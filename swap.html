@@ -4,39 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uniform Swap Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    header {
+      width:100%;
+      max-width: 400px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:#161b22;
+      padding:10px 20px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.5);
+      margin-bottom:20px;
+    }
+    header div:first-child { color:#ffcc00; font-weight:bold; font-size:14px; }
+    header a { color:#c9d1d9; font-size:18px; transition: all 0.2s; }
+    header a:hover { color:#ffcc00; }
+
     h2 {
       color: #ffcc00;
+      text-align: center;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px #000;
     }
+
     form {
-      background: #1e1e1e;
+      background: #161b22;
       padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
     }
+
     input, select, textarea, button {
       width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      border-radius: 5px;
+      max-width: 300px;
+      margin: 6px 0;
+      padding: 10px 12px;
+      border-radius: 6px;
       border: none;
+      font-size: 14px;
+      box-sizing: border-box;
+      background: #0d1117;
+      color: #c9d1d9;
+      border: 1px solid #30363d;
     }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border: 1px solid #ffcc00;
+      box-shadow: 0 0 6px #ffcc00;
+    }
+
     button {
       background: #ffcc00;
+      color: #0d1117;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
+    button:hover { background: #e6b800; transform: scale(1.02); }
+
     .match {
-      background: #222;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
+      background: #161b22;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      max-width: 400px;
+      transition: all 0.3s ease;
+    }
+    .match:hover { box-shadow: 0 4px 16px rgba(255,204,0,0.5); transform: translateY(-2px); }
+
+    @media (max-width: 500px) {
+      form, .match, header { max-width: 95%; }
     }
   </style>
 
@@ -47,199 +104,184 @@
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript">
-    (function(){
-      emailjs.init("ncvQolKw6IrCUfnEw"); // ✅ Your Public Key
-    })();
+    (function(){ emailjs.init("ncvQolKw6IrCUfnEw"); })();
   </script>
 </head>
 <body>
 
-  <h2>Uniform Swap / Sell Portal</h2>
+<header>
+  <div>Made by Aditya Murab, AIML A1 2025</div>
+  <div style="display:flex; gap:12px;">
+    <a href="https://www.instagram.com/aaadi_paaadiiii12/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://in.linkedin.com/in/aditya-murab" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/ashketchum7182" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
+</header>
 
-  <form id="swapForm">
-    <input type="text" id="name" placeholder="Full Name" required />
-    <input type="text" id="prn" placeholder="PRN (11 digits)" pattern="\\d{11}" required />
-    
-    <select id="branch" required>
-      <option value="">Select Branch</option>
-      <option value="AIML">AIML</option>
-      <option value="ENTC">ENTC</option>
-      <option value="RA">RA</option>
-      <option value="CIVIL">CIVIL</option>
-      <option value="MECHANICAL">MECHANICAL</option>
-      <option value="CSE">CSE 🤢</option>
-    </select>
+<h2>Uniform Swap / Sell Portal</h2>
 
-    <select id="year" required>
-      <option value="">Select Year</option>
-      <option value="1st">1st</option>
-      <option value="2nd">2nd</option>
-      <option value="3rd">3rd</option>
-      <option value="4th">4th</option>
-    </select>
+<form id="swapForm">
+  <input type="text" id="name" placeholder="Full Name" required />
+  <input type="text" id="prn" placeholder="PRN (11 digits)" pattern="\d{11}" maxlength="11" required />
 
-    <select id="gender" required>
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
+  <select id="branch" required>
+    <option value="">Select Branch</option>
+    <option value="AIML">🧠 AIML</option>
+    <option value="ENTC">📡 ENTC</option>
+    <option value="RA">🏗 RA</option>
+    <option value="CIVIL">🏛 CIVIL</option>
+    <option value="MECHANICAL">⚙️ MECHANICAL</option>
+    <option value="CSE">💻 CSE 🤢</option>
+  </select>
 
-    <input type="email" id="email" placeholder="Your Email" required />
-    <input type="text" id="contact" placeholder="WhatsApp No. (+91...)" required />
+  <select id="year" required>
+    <option value="">Select Year</option>
+    <option value="1st">1st</option>
+    <option value="2nd">2nd</option>
+    <option value="3rd">3rd</option>
+    <option value="4th">4th</option>
+  </select>
 
-    <select id="item" required>
-      <option value="">Select Item</option>
-      <option value="Shirt">Shirt</option>
-      <option value="Pant">Pant</option>
-      <option value="Blazer">Blazer</option>
-    </select>
+  <select id="gender" required>
+    <option value="">Select Gender</option>
+    <option value="Male">♂ Male</option>
+    <option value="Female">♀ Female</option>
+  </select>
 
-    <select id="size" required>
-      <option value="">Your Size</option>
-    </select>
+  <input type="email" id="email" placeholder="Your Email" required />
+  <input type="text" id="contact" placeholder="WhatsApp No. (+91...)" required />
 
-    <select id="wants" required>
-      <option value="">Want Size</option>
-    </select>
+  <select id="item" required>
+    <option value="">Select Item</option>
+    <option value="Shirt">👕 Shirt</option>
+    <option value="Pant">👖 Pant</option>
+    <option value="Blazer">🧥 Blazer</option>
+  </select>
 
-    <select id="action" required>
-      <option value="">Swap or Sell</option>
-      <option value="Swap">Swap</option>
-      <option value="Sell">Sell</option>
-    </select>
+  <select id="size" required><option value="">Your Size</option></select>
+  <select id="wants" required><option value="">Want Size</option></select>
 
-    <input type="text" id="price" placeholder="Price (if Selling)" />
-    <textarea id="info" placeholder="Additional Info"></textarea>
+  <select id="action" required>
+    <option value="">Swap or Sell</option>
+    <option value="Swap">🔄 Swap</option>
+    <option value="Sell">💰 Sell</option>
+  </select>
 
-    <button type="submit">Submit</button>
-  </form>
+  <input type="text" id="price" placeholder="Price (if Selling)" />
+  <textarea id="info" placeholder="Additional Info"></textarea>
+  <button type="submit">Submit</button>
+</form>
 
-  <h2>Available Swaps</h2>
-  <div id="listings"></div>
+<h2>Available Swaps</h2>
+<div id="listings"></div>
 
-  <h2>Multi-Way Swap Matches</h2>
-  <div id="matches"></div>
+<h2>Multi-Way Swap Matches</h2>
+<div id="matches"></div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD6_SdYU3LlhAry4718CdlUk84ORF0c4j4",
-      authDomain: "project1-32227.firebaseapp.com",
-      databaseURL: "https://project1-32227-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "project1-32227",
-      storageBucket: "project1-32227.firebasestorage.app",
-      messagingSenderId: "995436990407",
-      appId: "1:995436990407:web:44714a76b7fdc9ecfcd3e2"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyD6_SdYU3LlhAry4718CdlUk84ORF0c4j4",
+    authDomain: "project1-32227.firebaseapp.com",
+    databaseURL: "https://project1-32227-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "project1-32227",
+    storageBucket: "project1-32227.firebasestorage.app",
+    messagingSenderId: "995436990407",
+    appId: "1:995436990407:web:44714a76b7fdc9ecfcd3e2"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const swapsRef = ref(db, "swaps");
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const swapsRef = ref(db, "swaps");
 
-    // Fill sizes dynamically
-    const sizeDropdowns = ["size", "wants"];
-    sizeDropdowns.forEach(id => {
-      const sel = document.getElementById(id);
-      for (let i = 28; i <= 46; i += 2) {
-        let opt = document.createElement("option");
-        opt.value = i;
-        opt.text = i;
-        sel.appendChild(opt);
-      }
-    });
-
-    // Submit form
-    document.getElementById("swapForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const entry = {
-        name: document.getElementById("name").value,
-        prn: document.getElementById("prn").value,
-        branch: document.getElementById("branch").value,
-        year: document.getElementById("year").value,
-        gender: document.getElementById("gender").value,
-        email: document.getElementById("email").value,
-        contact: document.getElementById("contact").value,
-        item: document.getElementById("item").value,
-        size: document.getElementById("size").value,
-        wants: document.getElementById("wants").value,
-        action: document.getElementById("action").value,
-        price: document.getElementById("price").value,
-        info: document.getElementById("info").value
-      };
-
-      push(swapsRef, entry);
-      alert("Submitted successfully!");
-      document.getElementById("swapForm").reset();
-    });
-
-    // Send Email Function
-    function sendEmail(user) {
-      emailjs.send("service_6v2o2yi", "template_tsm7cwa", {
-        to_name: user.name,
-        name: user.name,
-        prn: user.prn,
-        branch: user.branch,
-        year: user.year,
-        gender: user.gender,
-        phone: user.contact,
-        email: user.email,
-        item: user.item,
-        size: user.size,
-        wants: user.wants
-      });
+  ["size","wants"].forEach(id=>{
+    const sel = document.getElementById(id);
+    for(let i=28;i<=46;i+=2){
+      const opt=document.createElement("option");
+      opt.value=i; opt.text=i;
+      sel.appendChild(opt);
     }
+  });
 
-    // Show listings + detect matches
-    onValue(swapsRef, (snapshot) => {
-      const data = snapshot.val();
-      const listingsDiv = document.getElementById("listings");
-      const matchesDiv = document.getElementById("matches");
-      listingsDiv.innerHTML = "";
-      matchesDiv.innerHTML = "";
+  document.getElementById("swapForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const entry = {
+      name: document.getElementById("name").value,
+      prn: document.getElementById("prn").value,
+      branch: document.getElementById("branch").value,
+      year: document.getElementById("year").value,
+      gender: document.getElementById("gender").value,
+      email: document.getElementById("email").value,
+      contact: document.getElementById("contact").value,
+      item: document.getElementById("item").value,
+      size: document.getElementById("size").value,
+      wants: document.getElementById("wants").value,
+      action: document.getElementById("action").value,
+      price: document.getElementById("price").value,
+      info: document.getElementById("info").value
+    };
+    push(swapsRef,entry);
+    alert("Submitted successfully!");
+    document.getElementById("swapForm").reset();
+  });
 
-      if (!data) return;
+  function sendEmail(user){
+    emailjs.send("service_6v2o2yi","template_tsm7cwa",{
+      to_name:user.name,
+      name:user.name,
+      prn:user.prn,
+      branch:user.branch,
+      year:user.year,
+      gender:user.gender,
+      phone:user.contact,
+      email:user.email,
+      item:user.item,
+      size:user.size,
+      wants:user.wants
+    });
+  }
 
-      const entries = Object.values(data);
-      entries.forEach(e => {
-        const div = document.createElement("div");
-        div.className = "match";
-        div.innerHTML = `<b>${e.name}</b> (${e.gender}, ${e.branch}, Year ${e.year})<br>
-        ${e.item}: Size ${e.size} → Wants ${e.wants}<br>
-        Contact: ${e.contact}, Email: ${e.email}<br>
-        Action: ${e.action} ${e.action==="Sell" ? "₹"+e.price : ""}<br>
-        Info: ${e.info}`;
-        listingsDiv.appendChild(div);
-      });
+  onValue(swapsRef,(snapshot)=>{
+    const data=snapshot.val();
+    const listingsDiv=document.getElementById("listings");
+    const matchesDiv=document.getElementById("matches");
+    listingsDiv.innerHTML=""; matchesDiv.innerHTML="";
+    if(!data) return;
+    const entries=Object.values(data);
+    entries.forEach(e=>{
+      const div=document.createElement("div");
+      div.className="match";
+      div.innerHTML=`<b>${e.name}</b> (${e.gender}, ${e.branch}, Year ${e.year})<br>
+      ${e.item}: Size ${e.size} → Wants ${e.wants}<br>
+      Contact: ${e.contact}, Email: ${e.email}<br>
+      Action: ${e.action} ${e.action==="Sell"?"₹"+e.price:""}<br>
+      Info: ${e.info}`;
+      listingsDiv.appendChild(div);
+    });
 
-      // Multi-way cycle detection
-      for (let i = 0; i < entries.length; i++) {
-        for (let j = 0; j < entries.length; j++) {
-          for (let k = 0; k < entries.length; k++) {
-            if (i!==j && j!==k && i!==k) {
-              let A = entries[i], B = entries[j], C = entries[k];
-              if (A.action==="Swap" && B.action==="Swap" && C.action==="Swap" &&
-                  A.item===B.item && B.item===C.item &&
-                  A.gender===B.gender && B.gender===C.gender &&
-                  A.size===C.wants && B.size===A.wants && C.size===B.wants) {
-                let match = document.createElement("div");
-                match.className = "match";
-                match.innerHTML = `3-Way Swap Found:<br>
-                ${A.name} → ${B.name} → ${C.name} → ${A.name}`;
-                matchesDiv.appendChild(match);
-
-                // Send email to all
-                sendEmail(A);
-                sendEmail(B);
-                sendEmail(C);
-              }
+    // Multi-way swap detection
+    for(let i=0;i<entries.length;i++){
+      for(let j=0;j<entries.length;j++){
+        for(let k=0;k<entries.length;k++){
+          if(i!==j && j!==k && i!==k){
+            let A=entries[i], B=entries[j], C=entries[k];
+            if(A.action==="Swap" && B.action==="Swap" && C.action==="Swap" &&
+               A.item===B.item && B.item===C.item &&
+               A.gender===B.gender && B.gender===C.gender &&
+               A.size===C.wants && B.size===A.wants && C.size===B.wants){
+              const match=document.createElement("div");
+              match.className="match";
+              match.innerHTML=`3-Way Swap Found:<br>${A.name} → ${B.name} → ${C.name} → ${A.name}`;
+              matchesDiv.appendChild(match);
+              sendEmail(A); sendEmail(B); sendEmail(C);
             }
           }
         }
       }
-    });
-  </script>
+    }
+  });
+</script>
 </body>
 </html>
