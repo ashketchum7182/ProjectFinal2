@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uniform Swap Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Roboto',sans-serif;
+      background:#121212;
+      color:#fff;
+      min-height:100vh;
+      padding:20px;
+    }
+    h1,h2{text-align:center; color:#ff6b6b; margin-bottom:20px;}
+    form {
+      background:#1e1e1e;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.6);
+      max-width:700px;
+      margin:0 auto 40px auto;
+    }
+    label{display:block; margin-top:15px; font-weight:bold;}
+    input,select,textarea,button{
+      width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #333; background:#2c2c2c; color:#fff;
+    }
+    textarea{resize:vertical;}
+    button{
+      background:#ff6b6b; color:#fff; font-weight:bold; font-size:1.1em; cursor:pointer; border:none;
+      border-radius:50px; margin-top:20px; transition:transform 0.3s, box-shadow 0.3s;
+    }
+    button:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      background:#ff4757;
+    }
+    table {
+      width:100%; border-collapse:collapse; margin-top:20px; background:#1e1e1e; border-radius:10px; overflow:hidden;
+    }
+    th,td{padding:12px; border-bottom:1px solid #333; text-align:center;}
+    th{background:#ff6b6b;}
+    ul#matches{list-style:none; margin-top:20px;}
+    ul#matches li{
+      background:#2c2c2c; padding:10px; margin-bottom:10px; border-radius:10px; word-break:break-word;
+    }
+    a{color:#ff6b6b; text-decoration:none;}
+    a:hover{color:#ff4757;}
+    .back-button {
+      display:inline-block;
+      padding:10px 25px;
+      background:#ff6b6b;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      border-radius:50px;
+      transition: transform 0.3s, background 0.3s;
+      margin-bottom:20px;
+    }
+    .back-button:hover {
+      transform:translateY(-3px);
+      background:#ff4757;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align:center;">
+    <a href="index.html" class="back-button">← Back to Home</a>
+  </div>
+
+  <h1>👕 Uniform Swap Portal</h1>
+
+  <form id="swapForm">
+    <label>Name:</label>
+    <input type="text" id="name" required>
+
+    <label>PRN (11 digits):</label>
+    <input type="text" id="prn" pattern="\d{11}" title="PRN must be exactly 11 digits" required>
+
+    <label>Branch:</label>
+    <select id="branch" required>
+      <option value="">Select Branch</option>
+      <option>AIML</option>
+      <option>ENTC</option>
+      <option>RA</option>
+      <option>CIVIL</option>
+      <option>MECHANICAL</option>
+      <option>CSE 🤢</option>
+    </select>
+
+    <label>Year:</label>
+    <select id="year" required>
+      <option value="">Select Year</option>
+      <option>1st</option>
+      <option>2nd</option>
+      <option>3rd</option>
+      <option>4th</option>
+    </select>
+
+    <label>Gender:</label>
+    <select id="gender" required>
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <label>Contact Info (WhatsApp, +91…):</label>
+    <input type="text" id="contact" required>
+
+    <label>Additional Info:</label>
+    <textarea id="additional"></textarea>
+
+    <label>Are you selling or want to swap?</label>
+    <select id="action" required>
+      <option value="">Select Option</option>
+      <option value="Swap">Swap</option>
+      <option value="Sell">Sell</option>
+    </select>
+
+    <label>Item:</label>
+    <select id="item" required>
+      <option value="">Select Item</option>
+      <option value="Shirt">Shirt</option>
+      <option value="Pant">Pant</option>
+      <option value="Blazer">Blazer</option>
+    </select>
+
+    <label>Size:</label>
+    <select id="size" required>
+      <option value="">Select Size</option>
+      <option value="28">28</option><option value="30">30</option>
+      <option value="32">32</option><option value="34">34</option>
+      <option value="36">36</option><option value="38">38</option>
+      <option value="40">40</option><option value="42">42</option>
+      <option value="44">44</option><option value="46">46</option>
+    </select>
+
+    <label>Wanted Size (if swap):</label>
+    <select id="wants" required>
+      <option value="">Select Size</option>
+      <option value="28">28</option><option value="30">30</option>
+      <option value="32">32</option><option value="34">34</option>
+      <option value="36">36</option><option value="38">38</option>
+      <option value="40">40</option><option value="42">42</option>
+      <option value="44">44</option><option value="46">46</option>
+    </select>
+
+    <label>Price (if selling):</label>
+    <input type="text" id="price" placeholder="Enter price if selling">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>All Listings</h2>
+  <table id="listingTable">
+    <thead>
+      <tr>
+        <th>Name</th><th>PRN</th><th>Branch</th><th>Year</th><th>Gender</th>
+        <th>Item</th><th>Size</th><th>Wants</th><th>Action</th>
+        <th>Contact</th><th>Additional Info</th><th>Price</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Multi-Way Swap Matches (3+)</h2>
+  <ul id="matches"></ul>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBg-5cSR9faoP2DoBf1JzEHl5ZcCg4kP-8",
+      authDomain: "uniform-swap.firebaseapp.com",
+      databaseURL: "https://uniform-swap-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "uniform-swap",
+      storageBucket: "uniform-swap.appspot.com",
+      messagingSenderId: "1000773744489",
+      appId: "1:1000773744489:web:bd16ea5bd6cfbf6b626ff8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const form = document.getElementById("swapForm");
+    const listingTable = document.querySelector("#listingTable tbody");
+    const matchesUL = document.getElementById("matches");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const entry = {
+        name: document.getElementById("name").value,
+        prn: document.getElementById("prn").value,
+        branch: document.getElementById("branch").value,
+        year: document.getElementById("year").value,
+        gender: document.getElementById("gender").value,
+        contact: document.getElementById("contact").value,
+        additional: document.getElementById("additional").value,
+        action: document.getElementById("action").value,
+        item: document.getElementById("item").value,
+        size: document.getElementById("size").value,
+        wants: document.getElementById("wants").value,
+        price: document.getElementById("price").value
+      };
+      push(ref(db, "swaps"), entry);
+      form.reset();
+    });
+
+    onValue(ref(db, "swaps"), snapshot => {
+      const data = snapshot.val();
+      listingTable.innerHTML = "";
+      matchesUL.innerHTML = "";
+      if (!data) return;
+      const entries = Object.values(data);
+
+      entries.forEach(e => {
+        const row = `<tr>
+          <td>${e.name}</td><td>${e.prn}</td><td>${e.branch}</td><td>${e.year}</td><td>${e.gender}</td>
+          <td>${e.item}</td><td>${e.size}</td><td>${e.wants}</td><td>${e.action}</td>
+          <td>${e.contact}</td><td>${e.additional}</td><td>${e.price}</td>
+        </tr>`;
+        listingTable.innerHTML += row;
+      });
+
+      // Multi-way swap logic
+      const cycles = findCycles(entries);
+      if (cycles.length === 0) matchesUL.innerHTML = "<li>No multi-way swaps yet.</li>";
+      else cycles.forEach(cycle => {
+        const li = document.createElement("li");
+        let text = "Swap cycle: " + cycle.join(" → ");
+        for (let i = 0; i < cycle.length - 1; i++) {
+          const fromName = cycle[i];
+          const toName = cycle[i + 1];
+          const fromEntry = entries.find(e => e.name === fromName);
+          const toEntry = entries.find(e => e.name === toName);
+          if (fromEntry && toEntry && toEntry.contact) {
+            const waLink = `https://wa.me/${toEntry.contact.replace(/\D/g,'')}?text=Hi ${toEntry.name}, ${fromName} wants to swap uniforms with you!`;
+            text += ` [Message ${toName}](${waLink})`;
+          }
+        }
+        li.innerHTML = text;
+        matchesUL.appendChild(li);
+      });
+    });
+
+    function findCycles(entries) {
+      let cycles = [];
+      function dfs(path, start, current) {
+        entries.forEach(e => {
+          if (e.item !== current.item || e.action !== "Swap") return;
+          if (current.wants === e.size && current.gender === e.gender) {
+            if (e.name === start && path.length >= 3) cycles.push([...path, start]);
+            else if (!path.includes(e.name)) dfs([...path, e.name], start, e);
+          }
+        });
+      }
+      entries.forEach(e => dfs([e.name], e.name, e));
+      let unique = [];
+      cycles.forEach(cycle => {
+        if (cycle.length >= 4) {
+          const str = cycle.join("-");
+          if (!unique.includes(str)) unique.push(str);
+        }
+      });
+      return unique.map(c => c.split("-"));
+    }
+  </script>
+</body>
+</html>
